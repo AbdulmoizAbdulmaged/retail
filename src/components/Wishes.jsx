@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 import ProductItem from './ProductItem';
-import { DeleteOutlined } from '@material-ui/icons';
+import { DeleteOutlined } from '@mui/icons-material';
 import { removeWish } from '../redux/userRedux';
 
 

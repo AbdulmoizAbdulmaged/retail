@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import Announcement from '../components/Announcement';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import { Add, Remove } from '@material-ui/icons';
+import { Add, Remove } from '@mui/icons-material';
 import { mobile } from '../Responsive';
 import { useLocation } from 'react-router-dom';
 import { publicRequest } from '../requestMethod';

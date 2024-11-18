@@ -11,7 +11,7 @@ import { signOut } from '../redux/apiCalls';
 import axios from 'axios';
 import { getSearchProducts } from '../redux/searchRedux';
 import { Favorite, Search } from '@mui/icons-material';
-import { ShoppingCart } from '@material-ui/icons';
+import { ShoppingCart } from '@mui/icons-material';
 import { Badge } from '@mui/material';
 
 

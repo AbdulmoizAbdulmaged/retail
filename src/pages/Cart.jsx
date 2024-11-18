@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import Announcement from '../components/Announcement';
 import Navbar from '../components/Navbar';
-import { Add, DeleteOutlined, Remove } from '@material-ui/icons';
+import { Add, DeleteOutlined, Remove } from '@mui/icons-material';
 import { mobile } from '../Responsive';
 import { useDispatch, useSelector } from 'react-redux';
 import StripeCheckout from 'react-stripe-checkout';

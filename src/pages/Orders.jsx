@@ -4,7 +4,7 @@ import { mobile } from '../Responsive';
 import Navbar from '../components/Navbar';
 import Announcement from '../components/Announcement';
 import { Link } from 'react-router-dom';
-import { DeleteOutlined } from '@material-ui/icons';
+import { DeleteOutlined } from '@mui/icons-material';
 import { useDispatch, useSelector } from 'react-redux';
 import { getOrders, updateOrder } from '../redux/apiCalls';
 
