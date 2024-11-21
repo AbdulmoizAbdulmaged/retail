@@ -12,6 +12,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
+  margin: 15px;
 `;
 const Info = styled.div`
   opacity: 1.5;

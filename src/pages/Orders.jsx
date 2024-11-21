@@ -145,7 +145,7 @@ function Orders() {
           <ProductId><b>Order: </b>{order._id}</ProductId>
               <ProductName><b>Total Price: </b>{order.amount/100} SAR</ProductName>
               <ProductName><b>Status: </b>{order.status}</ProductName>
-              <ProductName><b>Receiving date: </b></ProductName>
+              <ProductName><b>Receiving date: 2-5 days </b></ProductName>
               <DeleteOutlined id={order._id} onClick={handleDeleteClick} style={{marginTop:'10px',cursor:'pointer',color:'red'}}/>
         </Info>
           <Product>

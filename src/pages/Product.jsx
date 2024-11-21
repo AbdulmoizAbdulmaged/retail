@@ -123,8 +123,8 @@ const Product = () => {
   const id = location.pathname.split("/")[2];
   const [product,setProduct] = useState({});
   const [quantity,setQuantity] = useState(1);
-  const [color,setColor] = useState(["any color"]);
-  const [size,setSize] = useState();
+  const [selectedColor,setColor] = useState(["any color"]);
+  const [selectedSize,setSize] = useState();
   const dispatch = useDispatch();
   
   useEffect(()=>{
@@ -154,10 +154,10 @@ const Product = () => {
 
   const handleClick = ()=>{
     //update Cart
-    if(color === "any color"){
+    if(selectedColor === "any color"){
       
     }
-    dispatch(addProduct({...product,quantity,color,size}));
+    dispatch(addProduct({...product,quantity,selectedColor,selectedSize}));
     
     
   }
@@ -177,7 +177,7 @@ const Product = () => {
           <Price>$ {product.price}</Price>
           <FilterContainer>
           {(product.color?.length > 0) && <Filter>
-            {(color !== 'any color') && <ProductColor color={color}/>}
+            {(selectedColor !== 'any color') && <ProductColor color={selectedColor}/>}
               <FilterTitle>Select Color</FilterTitle>
                {
                product.color?.map((c)=>(

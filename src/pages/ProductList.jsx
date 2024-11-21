@@ -29,6 +29,7 @@ const FilterText = styled.span`
 const Select = styled.select`
   padding: 10px;
   margin-right: 20px;
+  border: none;
   ${mobile({margin:"5px"})}
 `;
 const Option = styled.option`
@@ -43,9 +44,13 @@ const ProductList = () => {
   const handleFilters = (e)=>{
      const value = e.target.value;
  
-    if(value === "Men"){
-      navigate('/products/men');
-    }else if(value === "Women")
+    if(value === "All"){
+      navigate('/products/');
+    }else if(value === "Men")
+      {
+        navigate('/products/men');
+      }
+    else if(value === "Women")
     {
       navigate('/products/women');
     }else if(value === 'Kids'){
@@ -72,14 +77,14 @@ const ProductList = () => {
       <FilterContainer>
         <Filter><FilterText>Filter Products:</FilterText>
         <Select name='type' onChange={handleFilters}>
-        <Option>select type</Option>
+        <Option></Option>
         <Option>Women</Option>
         <Option >Men</Option>
         <Option>Kids</Option>
         <Option>Infant</Option>
         </Select>
         <Select name='brand' onChange={handleFilters}>
-        <Option>select brand</Option>
+        <Option></Option>
         <Option>Zara</Option>
         <Option >Aldo</Option>
         <Option>Addidas</Option>

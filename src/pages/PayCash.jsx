@@ -22,7 +22,7 @@ function PayCash() {
             price:item.price,
             size: item.selectedSize,
             color: item.selectedColor,
-            quantity: item._quantity,
+            quantity: item.quantity,
           })),
           amount: cart.total * 100,
           address: 'none',

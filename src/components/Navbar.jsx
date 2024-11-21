@@ -10,7 +10,7 @@ import { Link,useNavigate, } from 'react-router-dom';
 import { signOut } from '../redux/apiCalls';
 import axios from 'axios';
 import { getSearchProducts } from '../redux/searchRedux';
-import { Favorite, Search } from '@mui/icons-material';
+import { Favorite, Home, Search } from '@mui/icons-material';
 import { ShoppingCart } from '@mui/icons-material';
 import { Badge } from '@mui/material';
 
@@ -26,7 +26,7 @@ height:75px;
 -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
   box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
   margin-Top: 15px;
-${mobile({marginBottom:"20px",dispatch:'flex',flexDirection:'column',height:'140px'})};
+${mobile({marginBottom:"20px",dispatch:'flex',flexDirection:'column',height:'100px'})};
 `
 const Wrapper = styled.div`
   padding: 10px 20px;
@@ -56,7 +56,9 @@ display: flex;
 align-items: center;
 text-align: center;
 justify-content: center;
+${mobile({display:'none'})}
 `;
+
 
 const Languages = styled.span`
   font-size: 14px;
@@ -145,6 +147,9 @@ const Navbar = () => {
         <Languages>
           EN
         </Languages>
+        <Link to={'/'}>
+        <Home/>
+        </Link>
         <SearchContainer>
           <Input placeholder='Search' id='query' name='query' onChange={e=>setQuery(e.target.value)}/>
           <Search style={{color:"gray",fontSize:16,cursor:"pointer"}} onClick={handleSearch}/>
@@ -155,7 +160,7 @@ const Navbar = () => {
         
         </Left>
         <Link to={'/'}>
-        <Center><Logo>R9Retail.com</Logo></Center>
+        <Center><Logo></Logo></Center>
         </Link>
        <Right>
 
