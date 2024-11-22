@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { mobile } from '../Responsive';
 import Navbar from '../components/Navbar';
@@ -106,15 +106,17 @@ function Orders() {
   const dispatch = useDispatch();
   const userId = useSelector(state=>state.customer.currentCustomer._id);
   const order  = useSelector(state=>state.order);
+ const  [total,setTotal]= useState()
+ const [products,setProducts] = useState([])
 
   useEffect(()=>{
 
     getOrders(dispatch,userId);
+   
  
   },[userId,dispatch]);
  
-  console.log(order);
-    
+ 
   const handleDeleteClick = (e)=>{
     e.preventDefault();
     const orderId = e.target.id;
@@ -123,6 +125,9 @@ function Orders() {
    
     updateOrder(orderId,removedOrder,dispatch);
   }
+
+   // Calculate total price
+   
   return (
     <Constainer>
       <Announcement/>
@@ -146,7 +151,7 @@ function Orders() {
               <ProductName><b>Total Price: </b>{order.amount/100} SAR</ProductName>
               <ProductName><b>Status: </b>{order.status}</ProductName>
               <ProductName><b>Receiving date: 2-5 days </b></ProductName>
-              <DeleteOutlined id={order._id} onClick={handleDeleteClick} style={{marginTop:'10px',cursor:'pointer',color:'red'}}/>
+              <DeleteOutlined id={order._id} key={order._id} onClick={handleDeleteClick} style={{marginTop:'10px',cursor:'pointer',color:'red'}}/>
         </Info>
           <Product>
          { order.products.map((product=>(             

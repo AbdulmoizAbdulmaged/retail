@@ -31,6 +31,10 @@ const cartSlice = createSlice({
         state.products[index].quantity = action.payload.quantity;
     }
   },
+  updateProductTotalPriceSuccessful: (state,action)=>{
+    state.isFetching = false;
+   state.total = action.payload;
+},
    
     
     resetCart: (state)=>{
@@ -42,5 +46,5 @@ const cartSlice = createSlice({
   }
 });
 
-export const {addProduct,removeProductSuccess,resetCart,updateProductQuantityStart,updateProductQuantitySuccessful,updateProductQuantityFailure} = cartSlice.actions;
+export const {addProduct,removeProductSuccess,resetCart,updateProductQuantityStart,updateProductQuantitySuccessful,updateProductQuantityFailure,updateProductTotalPriceSuccessful} = cartSlice.actions;
 export default cartSlice.reducer;

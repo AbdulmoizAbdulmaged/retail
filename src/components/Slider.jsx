@@ -55,7 +55,7 @@ flex: 1;
 `;
 const Image = styled.img`
 height: 80%;
-${mobile({height:'150px',})}
+${mobile({display:'none'})}
 `;
 
 const InfoContainer = styled.div`

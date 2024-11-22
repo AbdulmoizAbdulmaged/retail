@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import StripeCheckout from 'react-stripe-checkout';
 import { userRequest } from '../requestMethod';
 import { Link, useNavigate } from 'react-router-dom';
-import { removeProductSuccess, updateProductQuantitySuccessful } from '../redux/cartRedux';
+import { removeProductSuccess, updateProductQuantitySuccessful, updateProductTotalPriceSuccessful } from '../redux/cartRedux';
 
 
 
@@ -177,7 +177,7 @@ cursor: pointer;
 const Cart = () => {
 
   const cart = useSelector(state=>state.cart);
-  const [totalPrice, setTotalPrice] = useState(0);
+  const [totalPrice, setTotalPrice] = useState();
   const [stripeToken,setStripeToken] = useState(null);
   const dispatch = useDispatch();
   const customer = useSelector(state=>state.customer.currentCustomer);
@@ -223,11 +223,12 @@ const Cart = () => {
 
   useEffect(()=>{
     if (cart && cart.products) {
-      const sum = cart.products.reduce((acc, product) => acc + (product.price * product.quantity), 0);
+      const sum = cart.products.reduce((acc, product) => acc + product.price * product.quantity, 0);
       setTotalPrice(sum);
+      dispatch(updateProductTotalPriceSuccessful(sum))
       
     }
-  },[cart]);
+  },[cart,dispatch]);
 
   const handleOrderClick = (e)=>{
      e.preventDefault();
@@ -253,17 +254,17 @@ const Cart = () => {
     dispatch(updateProductQuantitySuccessful({ id,quantity }));
     }
    }
-   console.log(cart.products);
+  
    
    
  }
-  console.log(cart)
+  console.log(cart.total);
   return (
    <Container>
     <Announcement/>
     <Navbar/>
     <Wrapper>
-      <Title>My Cart</Title>
+      <Title>My Cart({totalPrice})</Title>
       <Top>
         <Link to={'/products'}>
         <TopButton>CONTINUE SHOPING</TopButton>
