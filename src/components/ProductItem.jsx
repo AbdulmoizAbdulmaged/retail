@@ -7,6 +7,7 @@ import { mobile } from '../Responsive';
 import { addWish } from '../redux/userRedux';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useState } from 'react';
 
 
 const Wrapper = styled.div`
@@ -87,7 +88,23 @@ const Title = styled.h1`
   font-weight: 200;
   font-size: 10px;
 `;
-
+const PriceSection = styled.div`
+ display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+`;
+const CurrentPrice = styled.span`
+  font-size: 20px;
+  font-weight: bold;
+  color: red;
+`;
+const OriginalPrice = styled.span`
+  font-size: 16px;
+  text-decoration: line-through;
+  color: rgba(47, 194, 3, 0.7);
+`;
 const Price = styled.span`
   font-weight: 300;
   font-size: 20px;
@@ -139,7 +156,9 @@ const FilterSize = styled.span`
 const ProductItem = ({item}) => {
   const customer = useSelector(state=>state.customer.currentCustomer);
  const dispatch = useDispatch();
+ const [discount,setDiscount] = useState(10);
  const quantity = 1;
+
   const addToCart = ()=>{
       if(item.selectedColor === 'none' || item.selectedSize === 'none'){
         toast.info('Please Select Size and Color!', {
@@ -199,7 +218,10 @@ const ProductItem = ({item}) => {
       </Icon>
      </Info>
      <Title>{item?.title}</Title>
-   <Price>{item?.price} SAR</Price>
+     {(discount > 0) &&<><CurrentPrice> {item?.price-(item?.price*discount/100)}SR</CurrentPrice>
+          <OriginalPrice>{item?.price}SR</OriginalPrice></>}
+          {(discount === 0)&&<Price>{item?.price}SR</Price>}
+     
    
    <Product>
    

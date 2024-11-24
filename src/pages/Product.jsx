@@ -118,6 +118,16 @@ const ProductColor = styled.div`
   border: 1px solid gray;
   background-color: ${props=>props.color};
 `;
+const CurrentPrice = styled.span`
+  font-size: 20px;
+  font-weight: bold;
+  color: red;
+`;
+const OriginalPrice = styled.span`
+  font-size: 16px;
+  text-decoration: line-through;
+  color: rgba(47, 194, 3, 0.7);
+`;
 const Product = () => {
   const location = useLocation();
   const id = location.pathname.split("/")[2];
@@ -125,6 +135,7 @@ const Product = () => {
   const [quantity,setQuantity] = useState(1);
   const [selectedColor,setColor] = useState(["any color"]);
   const [selectedSize,setSize] = useState();
+  const [discount,setDiscount] = useState(10);
   const dispatch = useDispatch();
   
   useEffect(()=>{
@@ -174,7 +185,9 @@ const Product = () => {
         <InfoContainer>
           <Title>{product.title}</Title>
           <Desc>{product.desc}</Desc>
-          <Price>$ {product.price}</Price>
+          {(discount > 0) &&<><CurrentPrice> {product?.price-(product?.price*discount/100)}SR</CurrentPrice>
+          <OriginalPrice>{product?.price}SR</OriginalPrice></>}
+          {(discount === 0)&&<Price>{product?.price}SR</Price>}
           <FilterContainer>
           {(product.color?.length > 0) && <Filter>
             {(selectedColor !== 'any color') && <ProductColor color={selectedColor}/>}
